@@ -91,8 +91,10 @@ rm -rf feeds/luci/applications/luci-app-openclash
 git clone --depth=1 https://github.com/vernesong/OpenClash package/luci-app-openclash
 
 # 预置 OpenClash Meta 内核到固件（aarch64_cortex-a53 = arm64）
+# tar 内文件名为 clash，OpenClash 要求命名为 clash_meta
 mkdir -p files/etc/openclash/core
-wget -qO- https://raw.githubusercontent.com/vernesong/OpenClash/core/dev/meta/clash-linux-arm64.tar.gz | tar xz -C files/etc/openclash/core/
+wget -qO- https://github.com/vernesong/OpenClash/raw/core/dev/meta/clash-linux-arm64.tar.gz | tar xz -C files/etc/openclash/core/
+mv files/etc/openclash/core/clash files/etc/openclash/core/clash_meta
 chmod +x files/etc/openclash/core/clash_meta
 
 ./scripts/feeds update -a
